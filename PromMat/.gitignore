@@ -8,6 +8,7 @@
 *.suo
 *.userosscache
 *.sln.docstates
+.vs
 
 # NuGet packages and cache
 *.nupkg

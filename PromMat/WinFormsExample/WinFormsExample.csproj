@@ -34,8 +34,8 @@
     <ProjectReference Include="..\EnterpriseDynamics\EnterpriseDynamics.csproj" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="python &quot;$(SolutionDir)copy_engine.py&quot; &quot;$(ProjectDir).&quot; &quot;$(Configuration)&quot;" />
-  </Target>
+  <ItemGroup>
+    <PackageReference Include="ErsWinForms" Version="0.4.0" />
+  </ItemGroup>
 
 </Project>

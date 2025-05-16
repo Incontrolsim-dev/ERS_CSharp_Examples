@@ -10,6 +10,14 @@ using Ers.Engine;
 
 namespace WinFormsExample
 {
+
+    public class TimeUtil
+    {
+        public static UInt64 SecondsToUnits(double seconds)
+        {
+            return (UInt64)(seconds * 1000000);
+        }
+    }
     public partial class FormMain : Form
     {
         private ModelContainer modelContainer;
