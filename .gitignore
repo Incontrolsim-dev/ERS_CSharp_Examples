@@ -1,0 +1,50 @@
+# Build results
+**/bin/
+**/obj/
+
+# VS/VSCode files
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet packages and cache
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Logs
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python cache
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
+# ERS generated
+**/erssettings.ini
+**/ers-engine.dll
+**/ers-engine.pdb
+**/*.xml
+
+# Compiled output
+**/*.dll
+**/*.exe
+**/*.pdb
+**/*.deps.json
+**/*.runtimeconfig.json
+
+# Local test output or transpiler results
+**/TranspilerOut/
+
+# Shader cache
+**/Shaders/**/*.bin
+
+# Image cache
+**/*.jpg.*
