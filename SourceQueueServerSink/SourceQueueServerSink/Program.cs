@@ -62,7 +62,7 @@ namespace SourceQueueServerSink
                 // Run 1 second on each update step
                 model.Update(1 * model.GetPrecision());
             }
-            ERS.UnInitialize();
+            ERS.Uninitialize();
         }
     }
 }
