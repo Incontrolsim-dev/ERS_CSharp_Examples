@@ -51,16 +51,16 @@ namespace SourceQueueServerSink
         /// </summary>
         private void ScheduleMoveOut()
         {
+            SubModel subModel = SubModel.GetSubModel();
+
             if (Target.GetComponent<RelationComponent>().Value.ChildCount() >= Target.GetComponent<Resource>().Value.Capacity)
             {
-                ulong retryDelay = RetryTime;
-                SubModel.ApplyModelPrecision(ref retryDelay);
+                ulong retryDelay = RetryTime * subModel.GetModelPrecision();
                 EventScheduler.ScheduleLocalEvent(0, retryDelay, ScheduleMoveOut);
                 return;
             }
 
-            ulong delay = 1;
-            SubModel.ApplyModelPrecision(ref delay);
+            ulong delay = subModel.ApplyModelPrecision(1);
             EventScheduler.ScheduleLocalEvent(0, delay, () =>
             {
                 var relation = ConnectedEntity.GetComponent<RelationComponent>();
@@ -69,8 +69,7 @@ namespace SourceQueueServerSink
                 // If there are more products left in the queue, schedule the move for the next one
                 if (relation.Value.ChildCount() > 0)
                 {
-                    ulong retryDelay = RetryTime;
-                    SubModel.ApplyModelPrecision(ref retryDelay);
+                    ulong retryDelay = RetryTime * subModel.GetModelPrecision();
                     EventScheduler.ScheduleLocalEvent(0, retryDelay, ScheduleMoveOut);
                 }
             });
