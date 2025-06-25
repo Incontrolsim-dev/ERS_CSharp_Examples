@@ -55,7 +55,7 @@ namespace SourceQueueServerSink
 
             if (Target.GetComponent<RelationComponent>().Value.ChildCount() >= Target.GetComponent<Resource>().Value.Capacity)
             {
-                ulong retryDelay = RetryTime * subModel.GetModelPrecision();
+                ulong retryDelay = RetryTime * subModel.ModelPrecision;
                 EventScheduler.ScheduleLocalEvent(0, retryDelay, ScheduleMoveOut);
                 return;
             }
@@ -63,13 +63,15 @@ namespace SourceQueueServerSink
             ulong delay = subModel.ApplyModelPrecision(1);
             EventScheduler.ScheduleLocalEvent(0, delay, () =>
             {
+                SubModel subModel = SubModel.GetSubModel();
+
                 var relation = ConnectedEntity.GetComponent<RelationComponent>();
-                SubModel.GetSubModel().UpdateParentOnEntity(relation.Value.First(), Target);
+                subModel.UpdateParentOnEntity(relation.Value.First(), Target);
 
                 // If there are more products left in the queue, schedule the move for the next one
                 if (relation.Value.ChildCount() > 0)
                 {
-                    ulong retryDelay = RetryTime * subModel.GetModelPrecision();
+                    ulong retryDelay = RetryTime * subModel.ModelPrecision;
                     EventScheduler.ScheduleLocalEvent(0, retryDelay, ScheduleMoveOut);
                 }
             });

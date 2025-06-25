@@ -36,7 +36,7 @@ namespace SourceQueueServerSink
 
         public override void OnEntered(Entity newChild)
         {
-            ulong delay = ProcessTime * SubModel.GetSubModel().GetModelPrecision();
+            ulong delay = ProcessTime * SubModel.GetSubModel().ModelPrecision;
             EventScheduler.ScheduleLocalEvent(0, delay, ProcessProduct);
             Logger.Debug($"Server started processing {newChild.GetName()}");
         }
@@ -52,7 +52,7 @@ namespace SourceQueueServerSink
 
         private void ScheduleMoveOut()
         {
-            ulong delay = MoveOutTime * SubModel.GetSubModel().GetModelPrecision();
+            ulong delay = MoveOutTime * SubModel.GetSubModel().ModelPrecision;
             EventScheduler.ScheduleLocalEvent(0, delay, () =>
             {
                 Entity child = ConnectedEntity.GetComponent<RelationComponent>().Value.First();

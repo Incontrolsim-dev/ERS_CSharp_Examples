@@ -54,7 +54,7 @@ namespace SourceQueueServerSink
                 Produced++;
             }
 
-            ulong delay = GenerationTime * subModel.GetModelPrecision();
+            ulong delay = GenerationTime * subModel.ModelPrecision;
             EventScheduler.ScheduleLocalEvent(0, delay, ProduceProduct);
         }
     }

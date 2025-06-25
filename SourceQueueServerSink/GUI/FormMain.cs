@@ -43,10 +43,7 @@ namespace GUI
             ersTreeView1.AttachedModelContainer = modelContainer;
             Logger.SetLogLevel(LogLevel.Info);
 
-            VirtualFileSystem.MountDirectory("Assets", "Assets");
-            AssetManager.AddImage("Assets/Tote_Top_White.png", "tote_white");
-
-            productTexture = new Texture(AssetManager.RetrieveImage("tote_white"));
+            productTexture = new Texture("Assets/Tote_Top_White.png");
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
@@ -74,8 +71,8 @@ namespace GUI
 
             e.Context.DrawInfiniteGrid2D();
 
-            var subModel = simulator.GetSubModel();
-            subModel.EnterSubModel();
+            simulator.EnterSubModel();
+            SubModel subModel = SubModel.GetSubModel();
 
             // Visualize sources
             var sourceView = subModel.GetView<SourceBehavior, TransformComponent>([]);
@@ -123,7 +120,7 @@ namespace GUI
                         productColor = new Vector3(0.0f, 0.89f, 0.47f);
                     else
                         productColor = new Vector3(1.0f, 0.18f, 0.18f);
-                    e.Context.DrawTexture(productTexture, productPos, Vector2.One, 0, productColor);
+                    e.Context.DrawTexture2D(productTexture, productPos, Vector2.One, 0, productColor);
                 }
             }
             serverView.Dispose();
@@ -142,19 +139,12 @@ namespace GUI
             }
             sinkView.Dispose();
 
-            subModel.ExitSubModel();
+            simulator.ExitSubModel();
         }
 
         private void Render3D(object? sender, RenderEventArgs e)
         {
             e.Context.DrawInfiniteGrid3D();
-
-            var subModel = modelContainer.GetSimulator(0).GetSubModel();
-            CollisionSystem.UpdateBoundingBoxes(subModel);
-
-            subModel.EnterSubModel();
-
-            subModel.ExitSubModel();
         }
 
         private void Visualization_SelectedEntityChanged(object? sender, SelectedEntityEventArgs e)
