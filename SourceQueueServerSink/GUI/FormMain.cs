@@ -32,6 +32,7 @@ namespace GUI
             ersVisualization1.Camera2D.Zoom = 50.0f;
             ersVisualization1.Camera3D.LookAt = new Vector3(5, 0, 0);
             ersVisualization1.Camera3D.ZFar = 1000.0f;
+            ersVisualization1.SetBackgroundColor(new Vector3(0.7f, 0.7f, 1.0f));
 
             ersRunControl1.Stop += StopTick;
             ersRunControl1.AttachObjects(Tick, ersClock1);
