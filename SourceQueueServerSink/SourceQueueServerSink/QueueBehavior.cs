@@ -54,13 +54,13 @@ namespace SourceQueueServerSink
             if (Target.GetComponent<RelationComponent>().Value.ChildCount() >= Target.GetComponent<Resource>().Value.Capacity)
             {
                 ulong retryDelay = RetryTime;
-                SubModel.ApplyModelPrecision(ref retryDelay);
+                retryDelay = SubModel.GetSubModel().ApplyModelPrecision(retryDelay);
                 EventScheduler.ScheduleLocalEvent(0, retryDelay, ScheduleMoveOut);
                 return;
             }
 
             ulong delay = 1;
-            SubModel.ApplyModelPrecision(ref delay);
+            delay = SubModel.GetSubModel().ApplyModelPrecision(delay);
             EventScheduler.ScheduleLocalEvent(0, delay, () =>
             {
                 var relation = ConnectedEntity.GetComponent<RelationComponent>();
@@ -70,7 +70,7 @@ namespace SourceQueueServerSink
                 if (relation.Value.ChildCount() > 0)
                 {
                     ulong retryDelay = RetryTime;
-                    SubModel.ApplyModelPrecision(ref retryDelay);
+                    retryDelay = SubModel.GetSubModel().ApplyModelPrecision(retryDelay);
                     EventScheduler.ScheduleLocalEvent(0, retryDelay, ScheduleMoveOut);
                 }
             });

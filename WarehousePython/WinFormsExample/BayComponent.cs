@@ -98,7 +98,7 @@ namespace WinFormsExample
             var bayView = SubModel.GetSubModel().GetView<TransformComponent, BayComponent>([]);
             
             // Create pallet model once
-            Model3D palletModel = CreateEurPallet(new Vector3(0.82f, 0.71f, 0.55f));
+            Mesh palletMesh = CreateEurPallet(new Vector3(0.82f, 0.71f, 0.55f));
             
             while (bayView.Next())
             {
@@ -126,7 +126,7 @@ namespace WinFormsExample
                 AddCrossBracing(mesh, basePosition, bayComponent.Value, mirrorFactor, horizontalBeamColor);
                 
                 // Add shelving and storage positions
-                AddStoragePositions(mesh, basePosition, bayComponent.Value, mirrorFactor, shelfColor, palletModel);
+                AddStoragePositions(mesh, basePosition, bayComponent.Value, mirrorFactor, shelfColor, palletMesh);
             }
         }
         
@@ -372,7 +372,7 @@ namespace WinFormsExample
         /// <summary>
         /// Adds storage shelves and visualizes storage positions
         /// </summary>
-        private static void AddStoragePositions(Mesh mesh, Vector3 basePosition, BayComponent bay, float mirrorFactor, Vector3 shelfColor, Model3D palletModel)
+        private static void AddStoragePositions(Mesh mesh, Vector3 basePosition, BayComponent bay, float mirrorFactor, Vector3 shelfColor, Mesh palletMesh)
         {
             // Add storage shelves for each position
             Random random = new Random(42); // Seed for consistent randomness
@@ -455,7 +455,7 @@ namespace WinFormsExample
         /// <summary>
         /// Creates a EUR pallet for visualization
         /// </summary>
-        private static Model3D CreateEurPallet(Vector3 woodColor)
+        private static Mesh CreateEurPallet(Vector3 woodColor)
         {
             Mesh palletMesh = new Mesh();
             
@@ -470,9 +470,7 @@ namespace WinFormsExample
             Vector3 palletDims = new Vector3(palletLength, palletWidth, palletHeight); // X, Y, Z
             palletMesh.PushCube(palletCenter, palletDims, woodColor);
             
-            var palletModel = new Model3D();
-            palletModel.AddMesh(palletMesh);
-            return palletModel;
+            return palletMesh;
         }
         
         /// <summary>

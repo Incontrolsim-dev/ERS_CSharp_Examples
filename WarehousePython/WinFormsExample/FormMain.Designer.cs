@@ -108,7 +108,7 @@ namespace WinFormsExample
             scriptToolStripMenuItem.Name = "scriptToolStripMenuItem";
             scriptToolStripMenuItem.Size = new Size(230, 34);
             scriptToolStripMenuItem.Text = "Script";
-            scriptToolStripMenuItem.Click += scriptToolStripMenuItem_Click;
+            scriptToolStripMenuItem.Click += ScriptToolStripMenuItem_Click;
             //
             // reloadToolStripMenuItem
             //

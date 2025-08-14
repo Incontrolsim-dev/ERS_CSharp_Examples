@@ -54,7 +54,7 @@ namespace SourceQueueServerSink
             }
 
             ulong delay = GenerationTime;
-            SubModel.ApplyModelPrecision(ref delay);
+            delay = SubModel.GetSubModel().ApplyModelPrecision(delay);
             EventScheduler.ScheduleLocalEvent(0, delay, ProduceProduct);
         }
     }
