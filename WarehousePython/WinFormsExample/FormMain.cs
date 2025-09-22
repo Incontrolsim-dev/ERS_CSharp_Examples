@@ -1,7 +1,6 @@
 using System.Numerics;
 using Ers;
 using Ers.Interpreter;
-using Ers.Model;
 using Ers.Visualization;
 using Ers.WinForms;
 using Ers.Math;

@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
@@ -7,23 +6,18 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\SourceQueueServerSink\SourceQueueServerSink.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Assets\" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="ErsWinForms" Version="0.5.2" />
+    <PackageReference Include="ErsWinForms" Version="0.6.0-feature-ers-editor-6315-8a58b595" />
   </ItemGroup>
-
   <ItemGroup>
     <None Update="Assets\Tote_Top_White.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>

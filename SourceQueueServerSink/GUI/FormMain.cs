@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
 using Ers;
-using Ers.Model;
 using Ers.Visualization;
 using Ers.WinForms;
 using SourceQueueServerSink;
