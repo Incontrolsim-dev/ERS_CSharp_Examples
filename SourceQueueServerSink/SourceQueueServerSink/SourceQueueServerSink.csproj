@@ -6,6 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Ers" Version="0.6.0-feature-ers-editor-6315-8a58b595" />
+    <PackageReference Include="Ers" Version="0.6.0-nightly-6486-8a346046" />
   </ItemGroup>
 </Project>
