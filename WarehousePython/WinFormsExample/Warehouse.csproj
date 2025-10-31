@@ -29,6 +29,6 @@
     <ProjectReference Include="..\EnterpriseDynamics\EnterpriseDynamics.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ErsWinForms" Version="0.6.0-nightly-6486-8a346046" />
+    <PackageReference Include="ErsWinForms" Version="0.6.0-nightly-6497-047bde2c" />
   </ItemGroup>
 </Project>
