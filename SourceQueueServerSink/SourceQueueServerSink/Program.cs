@@ -53,13 +53,15 @@ namespace SourceQueueServerSink
 
             ModelContainer model = Model.Create();
 
-            // Run for a total of 86400 seconds (1 day)
-            ulong endTime = 86400 * model.GetPrecision();
-            while (model.CurrentTime < endTime)
-            {
-                // Run 1 second on each update step
-                model.Update(1 * model.GetPrecision());
-            }
+            Debugger.Run(model);
+
+            //// Run for a total of 86400 seconds (1 day)
+            //ulong endTime = 86400 * model.GetPrecision();
+            //while (model.CurrentTime < endTime)
+            //{
+            //    // Run 1 second on each update step
+            //    model.Update(1 * model.GetPrecision());
+            //}
             ERS.Uninitialize();
         }
     }
