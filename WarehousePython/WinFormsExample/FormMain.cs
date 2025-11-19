@@ -379,7 +379,7 @@ namespace WinFormsExample
             simulator.EnterSubModel();
             SubModel subModel = SubModel.GetSubModel();
 
-            SubModel.GetSubModel().BeginRenderContext(e.Context);
+            SubModel.GetSubModel().BeginInterpreterRenderContext(e.Context);
 
             PathAnimationSystem.Update(SubModel.GetSubModel().GetSimulator().GetCurrentTime());
             TransformSystem.UpdateGlobals(subModel);
@@ -480,7 +480,7 @@ namespace WinFormsExample
             }
             bayView.Dispose();
 
-            SubModel.GetSubModel().EndRenderContext();
+            SubModel.GetSubModel().EndInterpreterRenderContext();
             simulator.ExitSubModel();
         }
 
@@ -592,7 +592,7 @@ namespace WinFormsExample
             foreach (string file in Directory.EnumerateFiles(directoryPath, "*.py", SearchOption.AllDirectories))
             {
                 string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
-                SubModel.GetSubModel().LoadModuleFromString(fileNameWithoutExtension, "");
+                SubModel.GetSubModel().LoadPythonModuleFromFile(file);
 
                 Logger.Debug($"Preloaded python module {fileNameWithoutExtension}");
             }
@@ -600,14 +600,13 @@ namespace WinFormsExample
             foreach (string file in Directory.EnumerateFiles(directoryPath, "*.py", SearchOption.AllDirectories))
             {
                 string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
-                string fileContent = File.ReadAllText(file);
-                SubModel.GetSubModel().LoadModuleFromString(fileNameWithoutExtension, fileContent);
+                SubModel.GetSubModel().LoadPythonModuleFromFile(file);
 
                 Logger.Debug($"Loaded python module {fileNameWithoutExtension}");
             }
 
             string modelContent = File.ReadAllText(modelPath);
-            SubModel.GetSubModel().LoadModuleFromString("model", modelContent);
+            SubModel.GetSubModel().LoadPythonModuleFromFile(modelPath);
         }
 
         private void RestartModel()

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Numerics;
 using Ers;
 
@@ -7,11 +6,8 @@ namespace SourceQueueServerSink
 {
     public class QueueBehavior : ScriptBehaviorComponent
     {
-        [Category("Queue")]
-        public Entity Target { get; set; }
-
-        [Category("Queue"), Description("The time (in seconds) to wait before retrying to move an entity.")]
-        public ulong RetryTime { get; set; } = 3;
+        public Entity Target;
+        public ulong RetryTime = 3;
 
         /// <summary>
         /// Helper function to easily create a queue entity.
@@ -25,8 +21,8 @@ namespace SourceQueueServerSink
             SubModel subModel = SubModel.GetSubModel();
             Entity entity = subModel.CreateEntity(name);
             var transform = entity.AddComponent<TransformComponent>();
-            transform.Value.SetPosition(pos);
-            transform.Value.SetScale(4, 2, 1);
+            transform.Value.Position = pos;
+            transform.Value.Scale = new Vector3(4, 2, 1);
             QueueBehavior queue = entity.AddComponent<QueueBehavior>();
             entity.AddComponent<Resource>().Value.Capacity = capacity;
             return queue;

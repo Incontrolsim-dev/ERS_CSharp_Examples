@@ -24,7 +24,7 @@ namespace ED
                 // TODO: Reset and such, remove until 0 and then add. This is
                 // quick and dirty.
                 Entity entity = scriptArguments.GetEntityArgument(0);
-                int num  = (int)scriptArguments.GetUInt64Argument(1);
+                int num  = (int)scriptArguments.GetInt64Argument(1);
                 for(int i = 0; i < num; i++)
                 {
                     entity.GetComponent<InterpreterAtomBehavior>().InputSlots.Add(new());
@@ -37,7 +37,7 @@ namespace ED
                 // TODO: Reset and such, remove until 0 and then add. This is
                 // quick and dirty.
                 Entity entity = scriptArguments.GetEntityArgument(0);
-                int num  = (int)scriptArguments.GetUInt64Argument(1);
+                int num  = (int)scriptArguments.GetInt64Argument(1);
                 for(int i = 0; i < num; i++)
                 {
                     entity.GetComponent<InterpreterAtomBehavior>().OutputSlots.Add(new());
@@ -66,9 +66,9 @@ namespace ED
             Interpreter.RegisterInterpreterFunction("channel_connect", scriptArguments =>
             {
                 Entity from = scriptArguments.GetEntityArgument(0);
-                int fromIdx = (int)scriptArguments.GetUInt64Argument(1);
+                int fromIdx = (int)scriptArguments.GetInt64Argument(1);
                 Entity to = scriptArguments.GetEntityArgument(2);
-                int toIdx = (int)scriptArguments.GetUInt64Argument(3);
+                int toIdx = (int)scriptArguments.GetInt64Argument(3);
 
                 // TODO: Error handling? Bounds checking? Disconnecting existing slots??
                 from.GetComponent<InterpreterAtomBehavior>().OutputSlots[fromIdx].Connect(to, toIdx);
@@ -82,7 +82,7 @@ namespace ED
             Interpreter.RegisterInterpreterFunction("channel_input_open", scriptArguments =>
             {
                 Entity entity = scriptArguments.GetEntityArgument(0);
-                int inputIdx = (int)scriptArguments.GetUInt64Argument(1);
+                int inputIdx = (int)scriptArguments.GetInt64Argument(1);
 
                 if(!entity.GetComponent<InterpreterAtomBehavior>().HasInput(inputIdx))
                 {
@@ -98,7 +98,7 @@ namespace ED
             Interpreter.RegisterInterpreterFunction("channel_input_close", scriptArguments =>
             {
                 Entity entity = scriptArguments.GetEntityArgument(0);
-                int inputIdx = (int)scriptArguments.GetUInt64Argument(1);
+                int inputIdx = (int)scriptArguments.GetInt64Argument(1);
 
                 // TODO: Error handling? Bounds checking? Disconnecting existing slots??
                 entity.GetComponent<InterpreterAtomBehavior>().CloseInput(inputIdx);
@@ -109,7 +109,7 @@ namespace ED
             Interpreter.RegisterInterpreterFunction("channel_output_send", scriptArguments =>
             {
                 Entity entity = scriptArguments.GetEntityArgument(0);
-                int outputIdx = (int)scriptArguments.GetUInt64Argument(1);
+                int outputIdx = (int)scriptArguments.GetInt64Argument(1);
                 Entity toSend = scriptArguments.GetEntityArgument(2);
                 var atom = entity.GetComponent<InterpreterAtomBehavior>();
                 Entity sendTo = atom.OutputSlots[outputIdx].GetConnectedTo();
@@ -120,7 +120,7 @@ namespace ED
             Interpreter.RegisterInterpreterFunction("channel_output_open", scriptArguments =>
             {
                 Entity entity = scriptArguments.GetEntityArgument(0);
-                int outputIdx = (int)scriptArguments.GetUInt64Argument(1);
+                int outputIdx = (int)scriptArguments.GetInt64Argument(1);
 
                 // TODO: Error handling? Bounds checking? Disconnecting existing slots??
                 var atomBehavior = entity.GetComponent<InterpreterAtomBehavior>();
@@ -132,7 +132,7 @@ namespace ED
             Interpreter.RegisterInterpreterFunction("channel_output_close", scriptArguments =>
             {
                 Entity entity = scriptArguments.GetEntityArgument(0);
-                int outputIdx = (int)scriptArguments.GetUInt64Argument(1);
+                int outputIdx = (int)scriptArguments.GetInt64Argument(1);
 
                 // TODO: Error handling? Bounds checking? Disconnecting existing slots??
                 entity.GetComponent<InterpreterAtomBehavior>().CloseOutput(outputIdx);
@@ -143,7 +143,7 @@ namespace ED
             Interpreter.RegisterInterpreterFunction("is_output_channel_ready", scriptArguments =>
             {
                 Entity entity = scriptArguments.GetEntityArgument(0);
-                int outputIdx = (int)scriptArguments.GetUInt64Argument(1);
+                int outputIdx = (int)scriptArguments.GetInt64Argument(1);
 
                 // TODO: Error handling? Bounds checking? Disconnecting existing slots??
                 bool result = entity.GetComponent<InterpreterAtomBehavior>().IsOutputChannelReady(outputIdx);
@@ -154,7 +154,7 @@ namespace ED
             Interpreter.RegisterInterpreterFunction("is_connected", scriptArguments =>
             {
                 Entity entity = scriptArguments.GetEntityArgument(0);
-                int outputIdx = (int)scriptArguments.GetUInt64Argument(1);
+                int outputIdx = (int)scriptArguments.GetInt64Argument(1);
 
                 if(outputIdx >= entity.GetComponent<InterpreterAtomBehavior>().OutputSlots.Count)
                 {

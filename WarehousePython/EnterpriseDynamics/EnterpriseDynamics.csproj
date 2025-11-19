@@ -15,6 +15,6 @@
     <Description>Enterprise Resource Simulator (ERS) extension library for compatibility with Enterprise Dynamics.</Description>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Ers" Version="0.6.0-nightly-6497-047bde2c" />
+    <PackageReference Include="Ers" Version="0.6.0-develop-6586-7735198c" />
   </ItemGroup>
 </Project>
