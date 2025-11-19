@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Ers" Version="0.6.0-develop-6586-7735198c" />
+    <PackageReference Include="Ers" Version="0.6.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SourceQueueServerSink\SourceQueueServerSink.csproj" />
